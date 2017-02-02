@@ -7,6 +7,7 @@ preformat: synopsis-preformat dissertation-preformat
 dissertation:
 	#	$(MAKE) -C Dissertation
 	latexmk -pdf -pdflatex="xelatex %O %S" dissertation
+	cp dissertation.pdf /mnt/d/dissertation.pdf
 
 pdflatex:
 	latexmk -pdf -pdflatex="pdflatex %O %S" dissertation
