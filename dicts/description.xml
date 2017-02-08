@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006"  xmlns:xlink="http://www.w3.org/1999/xlink">
+    <identifier value="vnd.dictionary.ru"/>
+
+    <version value="0.3.7"/>
+
+    <dependencies>
+        <OpenOffice.org-minimal-version value="3.0" d:name="нужен OpenOffice.org версии 3.0 или выше"/>
+    </dependencies>
+
+    <display-name>
+      <name lang="ru">Словари для русского языка</name>
+      <name lang="en">Dictionaries for Russian</name>
+    </display-name>
+
+    <publisher>
+      <name xlink:href="http://extensions.services.openoffice.org/project/dictru">dictru</name>
+    </publisher>
+
+    <platform value="all"/>
+
+    <registration>
+      <simple-license accept-by="admin" default-license-id="ID0" suppress-on-update="true" >
+	<license-text xlink:href="licenses/note_en.txt" lang="en" license-id="ID0" />
+	<license-text xlink:href="licenses/note_ru.txt" lang="ru" license-id="ID1" />
+      </simple-license>
+    </registration>
+
+    <icon>
+      <default xlink:href="icon.png" />
+    </icon>
+
+    <extension-description>
+      <src xlink:href="description/descr_ru.txt" lang="ru" />
+      <src xlink:href="description/descr_en.txt" lang="en" />
+    </extension-description>
+
+</description>
