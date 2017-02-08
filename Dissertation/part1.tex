@@ -256,7 +256,7 @@ c_v\frac{dT}{dt}&=-p\nabla\cdot\mathbf{u}.
 \begin{figure}[ht] 
 	\centering
 	\includegraphics[width=0.8\textwidth,height=0.5\textwidth]{images/6_1}
-	\caption{Полулагрнажевый метод, точные траектории, линейная интерполяция}
+	\caption{Полулагранжевый метод, точные траектории, линейная интерполяция}
 	\label{img:6_1}
 \end{figure}
 %
@@ -264,7 +264,7 @@ c_v\frac{dT}{dt}&=-p\nabla\cdot\mathbf{u}.
 \begin{figure}[ht] 
 	\centering
 	\includegraphics[width=0.8\textwidth,height=0.5\textwidth]{images/6_2}
-	\caption{Полулагрнажевый метод, точные траектории, квадратичная интерполяция}
+	\caption{Полулагранжевый метод, точные траектории, квадратичная интерполяция}
 	\label{img:6_2}
 \end{figure}
 %
@@ -272,7 +272,7 @@ c_v\frac{dT}{dt}&=-p\nabla\cdot\mathbf{u}.
 \begin{figure}[ht] 
 	\centering
 	\includegraphics[width=0.8\textwidth,height=0.5\textwidth]{images/6_3}
-	\caption{Полулагрнажевый метод, точные траектории, кубическая интерполяция сплайнами}
+	\caption{Полулагранжевый метод, точные траектории, кубическая интерполяция сплайнами}
 	\label{img:6_3}
 \end{figure}
 %
@@ -283,11 +283,11 @@ c_v\frac{dT}{dt}&=-p\nabla\cdot\mathbf{u}.
 	\begin{tabular}{| p{2cm} || p{2cm} | p{2cm} | p{2.5cm} | p{2.5cm} | p{2.5cm}l |}
 		\hline
 		\hline
-		Method   & \centering $e_2^{rel}$ & \centering $e_1^{rel}$ & \centering Dispersion & \centering Diffusion & \centering Minimum &\\
+		Method   & \centering $e_2^{rel}$ & \centering $e_1^{rel}$ & \centering Diffusion & \centering Diffusion & \centering Minimum &\\
 		\hline
 		Linear     &\centering 6.31e-2 &\centering 7.40e-2 &\centering 3.84e-2  &\centering 2.13e-2 &\centering 0.0     &\\
 		Quadratic  &\centering 7.98e-3 &\centering 9.38e-3 &\centering 9.55e-4  &\centering 4.36e-7 &\centering -0.1    &\\
-		Spline     &\centering 5.02e-4 &\centering 3.60e-4 &\centering 3.77e-6  &\centering 3.57e-9 &\centering -9.5e-3 &\\
+		Linear     &\centering 5.02e-4 &\centering 3.60e-4 &\centering 3.77e-6  &\centering 3.57e-9 &\centering -9.5e-3 &\\
 		\hline
 		\hline
 	\end{tabular}
@@ -321,12 +321,53 @@ e_2^{rel}&=\frac{\sqrt{\sum_{i=1}^{N}{(c_i^n-ex_i)}^2}}{\sqrt{\sum_{i=1}^{N}{ex_
 Они обладают свойством
 %
 \begin{equation}
-\label{eq:equation6_4}
+\label{eq:equation6_5}
 \sum_{i=1}^{N}(c_i^n-ex_i)^2=Dispersion\;error\,+\,Diffusion\;error,
 \end{equation}
 %
 таким образом общая ошибка $l_2$ может быть разложена на два члена. Первая учитывает разницу между первыми двумя моментами вычисленного и точного решения. Этот член называется диффузионной ошибкой, потому что наибольший вклад в разности вносит численная диффузия рассматриваемого метода. Другой член измеряет разницу между корреляцией приближенного и точного решений и произведением их дисперсий. Если отклонение среднего между приближенным и точным решением это независимые случайные значения, данный член будет равен нулю. Таким образом, значения отличные от нуля означают пространственную корреляцию между данными отклонениями, а значит определенный фазовый сдвиг между вычисленным и точным решениями. Данные величины весьма полезны для аккуратной оценки свойств численного метода решения уравнения переноса. В довершение к этому, с целью обратить внимание на то, что имеют место вылеты и вбросы решения, минимум вычисленного решения также приведен в таблице.
 \section*{Двумерная адвекция} \label{sect6_2}
+Для случая двумерного пассивного переноса, мы рассмотрели наиболее простой и широко известный тестовый пример, а именно, вращение твердого тела. Вращение происходит вокруг центра вычислительной области $[0,2]\times[0,2]$,  в качестве начальных данных выбрана финитная колоколообразная функция $\mathcal{C}^1$ с максимальным значением равным 10. Период вращения был взят $T=1000$, шаг по пространству $\Delta x = 1/25$. Для первых экспериментов, шаг по времени был взят $\Delta t = 5.0$. Максимальные числа Куранта были получены $C=0.78$, таким образом условие КФЛ выполняется на всей вычислительной области. Тест выполнялся до времени $T=1000$. В первую очередь, на рис. \ref{img:6_4} показаны точные траектории, а также результаты, полученные при помощи полулагранжевого метода и кубической интерполяции сплайнами.
+%
+\begin{figure}[ht] 
+	\centering
+	\includegraphics[width=0.8\textwidth,height=0.8\textwidth]{images/6_4}
+	\caption{Полулагранжевый метод, точные траектории, кубическая интерполяция сплайнами}
+	\label{img:6_4}
+\end{figure}
+%
+%
+\begin{figure}[ht] 
+	\centering
+	\includegraphics[width=0.8\textwidth,height=0.8\textwidth]{images/6_5}
+	\caption{Полулагранжевый метод, точные траектории, билинейная интерполяция}
+	\label{img:6_5}
+\end{figure}
+%
+%
+\begin{figure}[ht] 
+	\centering
+	\includegraphics[width=0.8\textwidth,height=0.8\textwidth]{images/6_6}
+	\caption{Полулагранжевый метод, метод Эйлера для траекторий, интерполяция сплайнами}
+	\label{img:6_6}
+\end{figure}
+%
+%
+\begin{figure}[ht] 
+	\centering
+	\includegraphics[width=0.8\textwidth,height=0.8\textwidth]{images/6_7}
+	\caption{Полулагранжевый метод, метод Рунге"--~Кутта второго порядка, интерполяция сплайнами}
+	\label{img:6_7}
+\end{figure}
+%
+%
+\begin{figure}[ht] 
+	\centering
+	\includegraphics[width=0.8\textwidth,height=0.8\textwidth]{images/6_8}
+	\caption{Полулагранжевый метод, метод Эйлера для траекторий с $\Delta t/5$, интерполяция сплайнами}
+	\label{img:6_8}
+\end{figure}
+%
 \section*{Сравнение с простыми эйлеровыми схемами} \label{sect6_3}
 \chapter{Теория полулагранжевых методов: анализ сходимости и устойчивости} \label{chapt_7}
 \chapter{Полулагранжевые методы против метода характеристик: полунеявные полулагранжевые методы
