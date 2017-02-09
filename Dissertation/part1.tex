@@ -528,6 +528,90 @@ e_2^{rel}&=\frac{\sqrt{\sum_{i=1}^{N}{(c_i^n-ex_i)}^2}}{\sqrt{\sum_{i=1}^{N}{ex_
 Здесь $x_i$ это узлы декартовой сетки дискретизации в $\mathbf{R}^d$. Можно увидеть, что максимальное значение нормы $l_{\infty}$ растет пропорционально числу шагов по времени. Хотя это не строгая оценка сверху, можно легко увидеть накопление ошибки в простых адвективных тестах. Для более ясной демонстрации влияния интерполяционной ошибки $\mathcal{E}(\Delta x)$, см., например, результаты на рис.~\ref{img:6_4},~\ref{img:6_5}. Последствия данного свойства заключаются в том, что тесты на сходимость дают скорее нелепые, а то и разочаровывающие результаты, см., например, таблицу~\ref{tbl:6_2}, результаты представленные в~\cite{A16} и обсуждение~\cite{A26}. Как пример, в таблице~\ref{tbl:7_1} приведены результаты экспериментов для простой адвекции для полулагранжевой схемы и схемы Лакса"--~Вендроффа. Здесь рассмотрена одномерная адвекция, a шаги по времени и пространству были одновременно уменьшены вдвое. В то время как схема Лакса"--~Вендроффа показывает скорость сходимости, которая примерно соответствующей ожидаемой, скорость сходимости (формально метода четвертого порядка по пространству) полулагранжевой схемы едва ли около двух. Эти результаты могут быть противопоставлены результатам из таблицы~\ref{tbl:7_2}, где тот же самый тест был проведен с поочередным уменьшением вдвое шага по пространству и времени. Можно увидеть, что увеличение пространственного разрешения приводит к последовательному уменьшению ошибки дискретизации, даже за пределами ожидаемой скорости сходимости, в то время как уменьшение вдвое шага по времени приводит, как оказалось, к росту ошибки (следовательно, к отрицательным скоростям сходимости), скорость которого, однако, зависит от пространственного разрешения.
 \chapter{Полулагранжевые методы против метода характеристик: полунеявные полулагранжевые методы
 	 для условий с малым числом Фруда} \label{chapt_8}
+%
+\begin{equation}
+\label{eq:equation8_1}
+\frac{\partial\mathbf{c}}{\partial t} + \mathbf{A}\frac{\partial \mathbf{c}}{\partial{x}} = 0
+\end{equation}
+%
+%
+\begin{equation*}
+\mathbf{c} = \begin{bmatrix}
+h \\
+u
+\end{bmatrix}
+ \quad
+\mathbf{A} = \begin{bmatrix}
+	U & H\\
+	g & U
+\end{bmatrix}
+\end{equation*}
+%
+%
+\begin{equation*}
+\mathbf{\Lambda} = \begin{bmatrix}
+U + \sqrt{gH} & 0\\
+0 & U - \sqrt{gH}
+\end{bmatrix}
+\quad
+\mathbf{T} = \begin{bmatrix}
+\frac{1}{2} & \frac{1}{2}\sqrt{\frac{H}{g}}\\
+\frac{1}{2}  & -\frac{1}{2} \sqrt{\frac{H}{g}}
+\end{bmatrix}
+\quad
+\mathbf{T}^{-1} = \begin{bmatrix}
+1 & 1\\
+\sqrt{\frac{g}{H}}  & -\sqrt{\frac{g}{H}}
+\end{bmatrix}
+\end{equation*}
+%
+1 $\mathbf{d}=\mathbf{T}\mathbf{c}$ 2 $c\mathbf{c}=\mathbf{T}^{-1}\mathbf{d}$
+%
+\begin{equation}
+\label{eq:equation8_2}
+\frac{\partial\mathbf{d}}{\partial t} + \mathbf{\Lambda}\frac{\partial \mathbf{d}}{\partial{x}} = 0.
+\end{equation}
+%
+%
+\begin{align}
+\label{eq:equation8_3}
+h_i^{n+1}&=\frac{1}{2}h_{i-\frac{(U+\sqrt{gH})\Delta t}{\Delta x}}^n+h_{i-\frac{(U-\sqrt{gH})\Delta t}{\Delta x}}^n \nonumber \\ 
+u_i^{n+1}&=\frac{1}{2}u_{i-\frac{(U+\sqrt{gH})\Delta t}{\Delta x}}^n+u_{i-\frac{(U-\sqrt{gH})\Delta t}{\Delta x}}^n
+\end{align}
+%
+%
+\begin{equation}
+\label{eq:equation8_4}
+-g\nabla h - f\mathbf{k}\times\mathbf{v}\approx 0.
+\end{equation}
+%
+%
+\begin{equation}
+\label{eq:equation8_5}
+\frac{|U|}{\sqrt{gH}} \ll 1.
+\end{equation}
+%
+%
+\begin{equation}
+\label{eq:equation8_6}
+\frac{|U\pm\sqrt{gH}|\Delta t}{\Delta x}.
+\end{equation}
+%
+%
+\begin{equation}
+\label{eq:equation8_7}
+\frac{d}{ds}\mathbf{X}(s;s+\Delta t,\,\mathbf{x})=\mathbf{u}(\mathbf{X}(s;s+\Delta t,\,\mathbf{x}), s)
+\end{equation}
+%
+1 $\mathbf{x}_{*}=\mathbf{X}(t; t + \Delta t,\,x).$ 2 $\phi_*$ 3 $\mathbf{x}_*$
+%
+\begin{align}
+\label{eq:equation8_8}
+\frac{h^{n+1}-h_{*}^n}{\Delta t}&=-\frac{1}{2} [h^n\nabla \cdot \mathbf{v}^{n+1} + h_*^n \nabla \cdot \mathbf{v}_{*}^n] \\
+\label{eq:equation8_9}
+\frac{\mathbf{v}^{n+1}-\mathbf{v}_{*}^n}{\Delta t}&=-\frac{g}{2}[\nabla h^{n+1}+\nabla h_{*}^n] - \frac{f\mathbf{k}\times\mathbf{v}^{n+1}+f_{*}\mathbf{k}\times\mathbf{v}_{*}^n}{2}.
+\end{align}
+%
 \chapter{Консервативные(mass conservative) и векторные (flux form) полулагранжевые методы} \label{chapt_9}
 \newpage
 \chapter{Выводы} \label{chapt_10}
